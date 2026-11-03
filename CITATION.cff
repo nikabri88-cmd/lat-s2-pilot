@@ -2,9 +2,12 @@ cff-version: 1.2.0
 message: "If you use this material, please cite it as below."
 title: "LAT-S2 pilot: Jacobian-lens monitor and text-stated norms in Qwen2.5-7B-Instruct"
 type: software
-version: "1.0.0"
-doi: "10.5281/zenodo.23912045"
+version: "1.0.1"
 date-released: "2026-11-03"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23912045"
+    description: "Version 1.0.0"
 repository-code: "https://github.com/nikabri88-cmd/lat-s2-pilot"
 license: CC-BY-NC-4.0
 authors:
@@ -16,12 +19,13 @@ authors:
 abstract: >-
   Exploratory pilot that carried the LAT-S1b measures of monitor visibility over to Qwen2.5-7B-Instruct with a
   Jacobian-lens (J-lens) monitor. Twelve norms that flip a reported device state were tested on two devices with 96
-  items each. The model followed 21 of 24 norm-device pairs; among them the lens showed 8-9 sighted norms and no blind
-  norm at any monitored layer, and an independently fitted community lens agreed wherever both read the fact. The
-  decision rule fixed before the run required at least three blind norms, so LAT-S2 stops in its current form. An
-  audit of the probe-lens gap at layer 13 traced it to input information present before the answer forms. The
-  release holds the pilot note, code, the Colab notebook, the main-run summary and log, and the audit scripts,
-  outputs and arrays.
+  items each. The model followed 21 of 24 norm-device pairs; none of them was classified blind at any of the 27 lens
+  layers. Clear sighted readings appeared for the 10 door pairs, while the 11 light pairs stayed unclassified until the
+  last layer. An independently fitted community lens agreed with the main lens wherever both read the fact. The
+  decision rule fixed before the run required at least three blind norms, so LAT-S2 stops in its current form. A
+  correlational audit found the probe-lens gap at layer 13 consistent with input information. The release holds the
+  pilot note, code, the Colab notebook, the main-run summary, log and per-pair result files, and the audit scripts,
+  outputs and arrays. Version 1.0.1 corrects the main statement of version 1.0.0.
 references:
   - type: software
     title: "LAT-S1 and LAT-S1b: what a Jacobian-lens monitor sees in a latent KV-cache channel"

@@ -1,14 +1,14 @@
 # LAT-S2 pilot: Jacobian-lens monitor and text-stated norms in Qwen2.5-7B-Instruct
 
-2 November 2026 · Julia Ryzhkova, Siriona · ORCID 0009-0005-4194-6059
+3 November 2026 (v1.0.1) · Julia Ryzhkova, Siriona · ORCID 0009-0005-4194-6059
 
 ## Summary
 
-In Qwen2.5-7B-Instruct, a Jacobian-lens (J-lens) monitor sees a norm stated in the prompt wherever it already sees the fact the norm acts on. Among the 21 norms the model follows, the pilot found 8–9 sighted norms and no blind norm at any monitored layer, so LAT-S2 stops in its current form.
+In Qwen2.5-7B-Instruct, a Jacobian-lens (J-lens) monitor showed no blind norm. Among the 21 norm–device pairs the model follows, none was classified blind at any of the 27 layers the lens reads, so LAT-S2 stops in its current form. Clear sighted readings appeared only for the door: 8 of 10 door pairs at their first readable layer (19) and all 10 from layer 22. The 11 light pairs stayed unclassified until the last layer (26), where the lens reading nearly coincides with the model's output.
 
-The pilot carried the LAT-S1b measures over to a real model: 12 norms that flip a reported device state, two devices (a light and a door), 96 items per norm and device, a J-lens fitted on the model and an independently fitted community lens as control. The lens reads nothing at layers 6 and 13. It reads the door norms from layer 19 (8–9 sighted); for the light it starts reading the fact only at layers 21–23, where five norms read at about half strength (rel 0.50–0.55).
+The pilot carried the LAT-S1b measures over to a real model: 12 norms that flip a reported device state, two devices (a light and a door), 96 items per norm and device, a J-lens fitted on the model and an independently fitted community lens as control. The lens reads neither the fact nor the answer before layer 19. For the light it first reads the fact at layers 21–23; there the norm's effect on the lens reading is about half the fact's effect in five pairs (rel\_R 0.50–0.55, a ratio of two effects), and the ratio is unstable in the other six.
 
-Linear probes decode the norm-applied answer at layer 13 (mean balanced accuracy 0.83), where the lens is silent. An audit traced this gap to input information. The probe is as accurate for norms the model ignores, one input feature predicts the decision as well as the probe in a smaller model, and the same gap appears for the plain fact without any norm.
+Linear probes decode the norm-applied answer at layer 13 (mean balanced accuracy 0.83), where the lens is silent. An audit found this gap consistent with input information. The probe is as accurate for norms the model ignores, one input feature predicts the decision as well as the probe in a smaller model, and the same gap appears for the plain fact without any norm. The audit is correlational, and part of it ran on the 1.5B debug model.
 
 ## Background
 
@@ -30,6 +30,8 @@ The pilot asked the simplest real-model version of that question. When an instru
 
 **Decision rule.** Fixed in the code before the main run: go to LAT-S2 if, at one monitored layer or at the first readable layer, the norms the model follows include at least 3 sighted and at least 3 blind. A norm counts as followed when the answer accuracy is at least 0.8 with the norm off and with it on.
 
+**Versions.** jacobian-lens commit 581d398613e5602a5af361e1c34d3a92ea82ba8e (2 July 2026, still the latest commit on 3 November 2026). Hugging Face main revisions of Qwen2.5-7B-Instruct (last updated 12 January 2025), Qwen2.5-1.5B-Instruct (25 September 2024) and the control lens (7 July 2026; file qwen2.5-7b-instruct\_jlens.pt, 693,641,956 bytes). The library versions of the Colab runtime were not recorded.
+
 **Runs.** The main run took place on 2 November 2026, 07:07–08:05 UTC, on one NVIDIA A100-SXM4-40GB in Google Colab (code hash 7188c03ec41d3740). A debug run on Qwen2.5-1.5B-Instruct (24 items per norm and device) checked the pipeline earlier that day; its saved arrays feed part of the audit.
 
 ## Results
@@ -42,31 +44,35 @@ The model follows 21 of the 24 norm–device pairs, and the lens finds no blind 
 | 13 | 0 of 21 | 0 | 0 |
 | 20 | 10 of 21 (all door) | 9 | 0 |
 | First readable (door 19, light 21–23) | 21 of 21 | 8 | 0 |
+| 22–25 | 14–21 of 21 | 10 (all door) | 0 |
+| 26 (last lens layer) | 21 of 21 | 21 | 0 |
 
-**Door.** The lens starts reading the fact at layer 19 and reads the norm there as well: 8 of 10 door norms are sighted (rel\_R 0.97–1.31), and 9 of 10 at layer 20. The other two read at about 0.6 (inverted\_notation 0.60, after\_toggle 0.57) and get no class.
+A recheck from the per-pair files covers all 27 lens layers and finds no blind pair at any of them (audit/outputs/recheck\_main\_units.txt).
 
-**Light.** The lens starts reading the fact only at layers 21–23. Four norms at layer 23 and code\_words at layer 21 read at about half strength (rel\_R 0.50–0.55). Six norms at layer 22 have a weak fact signal (Seen\_D 0.11–0.17) and unstable ratios, so their three readings disagree.
+**Door.** The lens starts reading the fact at layer 19 and reads the norm there as well: 8 of 10 door norms are sighted (rel\_R 0.97–1.31), 9 of 10 at layer 20 and all 10 from layer 22. At layer 19 the other two show rel\_R of about 0.6 (inverted\_notation 0.60, after\_toggle 0.57) and get no class.
+
+**Light.** The lens starts reading the fact only at layers 21–23. In four pairs at layer 23 and code\_words at layer 21, the norm's effect on the lens reading is about half the fact's effect (rel\_R 0.50–0.55); rel\_R is a ratio of the two effects, not a detection rate. Six pairs at layer 22 have a weak fact signal (Seen\_D 0.11–0.17) and unstable ratios, so their three readings disagree. All 11 light pairs become sighted only at layer 26, where the lens reading nearly coincides with the output.
 
 **Closest case and lens agreement.** The nearest thing to a blind norm is code\_words for the light at layer 21: its Seen\_R reading is blind (0.06), while its rel\_R is 0.55 and the control lens does not read the fact there yet. At the first readable layer, wherever the control lens also reads the fact (14 norms), the two lenses agree on rel\_R within 0.03.
 
 ## Audit of the probe–lens gap at middle layers
 
-The probe–lens gap at layer 13 reflects input information at a stage before the answer forms. Four checks on saved arrays, with no new GPU time, support this.
+The probe–lens gap at layer 13 is consistent with input information that has not yet taken the form of an answer. Four checks on saved arrays, with no new GPU time, support this reading.
 
 1. **Probe validity.** probe\_y predicts y = D xor R, the norm-applied answer, from the residual at the answer position. Folds are grouped by item, and scaling and PCA are fitted inside each training fold, so no prompt of a test item enters training.
 2. **Ignored norms (7B).** For the three norms the model never applies, probe\_y at layer 13 is 0.92, 0.91 and 0.85, above the mean of 0.83 for followed norms. At layer 20 it is 1.00 for all three, while with the norm on the model answers the opposite of y in every prompt. The probe reads the combination of fact and norm switch whether or not the model acts on it, in line with the linear XORs of feature pairs known in language-model residual streams ([Marks, 2024](https://www.lesswrong.com/posts/hjJXCn9GsskysDceS/what-s-up-with-llms-representing-xors-of-arbitrary-features)).
 3. **Decision probe against input features (1.5B).** In the debug run, six pairs apply the norm on part of the prompts only (25–77%), which allows a direct probe for "the model applied the norm on this prompt". It reaches balanced accuracy 0.69–0.96 at layer 13 and 0.58–0.76 at layer 6. One input feature, the log line holding the queried device, predicts the same decision at 0.73–0.94; in two pairs the fact value does so at 0.77–0.86. In five of six pairs a single input feature does as well as the probe (difference at most 0.04). The sixth leaves a small excess: 0.69 against 0.58 for all input features together, on 48 prompts.
 4. **Plain-fact control (1.5B).** Without any norm, a probe reads the fact at layer 13 with balanced accuracy 0.75–0.92, while the lens separates the two facts at AUC 0.53–0.64. At layer 20 both reach 1.00. The same gap thus appears for a fact the model reports without error.
 
-At middle layers the residual carries the inputs and their combinations; the lens reads what has already taken the form of an answer. A causal follow-up of the layer-13 gap is therefore not warranted by these data.
+These checks show that probe accuracy at layer 13 gives no evidence of a decision hidden from the lens. They are correlational: no causal intervention was run, and checks 3 and 4 used the 1.5B debug model, so they do not establish where the answer forms.
 
 ## Discussion
 
-The pilot shows inside a language model a pattern known from brain decoding: a reader near the output reads the output, and earlier readers find the ingredients. In a speech neuroprosthesis, arrays in ventral premotor area 6v classified words with 94% accuracy, while arrays in area 44 of Broca's area held little to no information about phonemes or words ([Willett et al., 2023](https://doi.org/10.1038/s41586-023-06377-x)). The J-lens sits at the same place relative to the answer: it reads late layers and stays silent where the model is still combining inputs.
+The parallels below are analogies that this pilot does not test. Brain decoding shows a similar pattern: a reader near the output reads the output, and earlier readers find the ingredients. In a speech neuroprosthesis, arrays in ventral premotor area 6v classified words with 94% accuracy, while arrays in area 44 of Broca's area held little to no information about phonemes or words ([Willett et al., 2023](https://doi.org/10.1038/s41586-023-06377-x)). In the model, the J-lens likewise reads late layers and stays silent where the inputs are still being combined.
 
 Decoders also read more than is produced. A motor-cortex decoder picked up inner speech and silently counted numbers that participants did not intend to say, and its authors added a gate and an unlock keyword ([Kunz et al., 2025](https://doi.org/10.1016/j.cell.2025.06.015)). In the model, probes read the norm-applied answer for norms the model ignores; in both cases the work is to separate what is present from what goes to the output.
 
-The LAT question has a counterpart in consciousness research, where report-based measures can mix the activity behind an experience with the activity behind reporting it ([Tsuchiya et al., 2015](https://doi.org/10.1016/j.tics.2015.10.002)). The J-lens resembles a report-based measure, and probes resemble no-report decoders. A model gives full access and free intervention, so it can serve as a test bench for such reading methods.
+The LAT question has a counterpart in consciousness research, where report-based measures can mix the activity behind an experience with the activity behind reporting it ([Tsuchiya et al., 2015](https://doi.org/10.1016/j.tics.2015.10.002)). By analogy, the J-lens resembles a report-based measure and probes resemble no-report decoders. A model gives full access and free intervention, so it can serve as a test bench for such reading methods.
 
 ## Limitations
 
@@ -75,13 +81,14 @@ The LAT question has a counterpart in consciousness research, where report-based
 - Layers 6 and 13 carry no class by construction, since a class needs the lens to read the fact (Seen\_D ≥ 0.1). The informative readings are the first readable layer and layer 20 for the door.
 - 96 items per pair; class intervals come from a bootstrap over items.
 - The answer is a two-token logit contrast at one position; free generation was not studied.
+- The lens measures the effect of the norm on that contrast. It does not decode the content of the rule or establish why the model answers as it does.
 - The main lens was fitted on 32 prompts; the community lens agrees with it wherever both read the fact.
 - Descriptive pilot: the decision rule was fixed in code before the main run, and no confirmatory test was planned.
 - The decision probe of the audit rests on the 1.5B debug run (48 prompts with the norm on per pair), made with an earlier build of the driver script; the three measurement modules are byte-identical to the main build.
 
 ## Decision and open questions
 
-LAT-S2 stops in its current form: the go rule needed at least 3 blind norms, and the pilot found none. For norms stated in text, the J-lens on Qwen2.5-7B-Instruct reads the applied norm as soon as it reads the fact, in full for the door and at about half strength for part of the light norms.
+LAT-S2 stops in its current form: the go rule needed at least 3 blind norms, and the pilot found none. For norms stated in text, the pilot found no blind norm in Qwen2.5-7B-Instruct; the door norms were clearly sighted from layers 19–22, and the light norms stayed unclassified until the last layer. The best supported finding is the gap between decoding the norm-applied answer and carrying out the instruction, shown by the audit.
 
 Questions left to separate protocols:
 
@@ -92,7 +99,7 @@ Questions left to separate protocols:
 
 ## Materials
 
-This repository holds the code, the Colab notebook of the main run, the main-run summary and log, and the audit scripts, outputs and arrays. SHA256SUMS.txt lists every file with its SHA-256; the anchors are below.
+This repository holds the code, the Colab notebook of the main run, the main-run summary and log, the per-pair result files of the main run (results\_main/units), and the audit scripts, outputs and arrays. SHA256SUMS.txt lists every file with its SHA-256; the anchors are below.
 
 | Item | Hash |
 | --- | --- |
@@ -100,7 +107,15 @@ This repository holds the code, the Colab notebook of the main run, the main-run
 | results\_main/summary.json | `9bb80b8d1c28ae551f411cc3b3388d7c7eb1ece1c1f097af3d84615e9217aa78` |
 | results\_main/log.txt | `4a51da84d1fb4b62019211e8338b68bfb5968990752a88d3ddc3d6fda30874e8` |
 
-The audit reruns on a CPU in a few minutes with the commands in README.md. The fitted main lens (694 MB), the per-pair files of the main run and the full debug outputs are held by the author.
+The audit reruns on a CPU in a few minutes with the commands in README.md. The fitted main lens (694 MB), the per-pair arrays of the main run (residuals and gradients, about 16 MB per pair) and the full debug outputs are held by the author.
+
+## Changes in v1.0.1
+
+- Corrected the main statement. Version 1.0.0 said that the monitor sees the norm wherever it sees the fact, which is stronger than the classification supports: clear sighted readings appeared only for the door pairs, and the light pairs stayed unclassified until the last layer. No pair was blind in either version.
+- Stated the audit conclusion as what correlational checks support, and marked the neuroscience parallels as untested analogies.
+- Added the per-pair result files of the main run (results\_main/units) and audit/recheck\_main\_units.py, which recomputes every reading and class from them and counts classes at all 27 lens layers.
+- Recorded the versions of jacobian-lens, the models and the control lens.
+- These changes follow an independent check of v1.0.0, which reproduced the file hashes, the code hash and all audit outputs.
 
 ## References
 
