@@ -2,6 +2,8 @@
 
 Julia Ryzhkova, Siriona · ORCID 0009-0005-4194-6059 · 2 November 2026
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23912045.svg)](https://doi.org/10.5281/zenodo.23912045)
+
 In Qwen2.5-7B-Instruct, a Jacobian-lens (J-lens) monitor decodes the answer with a text-stated norm applied as soon as it decodes the fact the norm acts on. Among the 21 of 24 norm–device pairs the model follows, the lens shows 8–9 sighted norms and no blind norm at any monitored layer, so LAT-S2 stops in its current form. Linear probes decode the norm-applied answer at layer 13 where the lens is silent; an audit traces this gap to input information present before the answer forms.
 
 The pilot carries over the measures of LAT-S1 and LAT-S1b ([doi:10.5281/zenodo.23842442](https://doi.org/10.5281/zenodo.23842442)). The full write-up, with setup, results, the audit, limitations and references, is in [NOTE.md](NOTE.md).
@@ -38,4 +40,6 @@ CC BY-NC 4.0, see [LICENSE](LICENSE).
 
 ## Cite
 
-See [CITATION.cff](CITATION.cff).
+Ryzhkova, J. (2026). LAT-S2 pilot: Jacobian-lens monitor and text-stated norms in Qwen2.5-7B-Instruct (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.23912045
+
+See also [CITATION.cff](CITATION.cff).
