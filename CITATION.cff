@@ -21,7 +21,7 @@ abstract: >-
   Jacobian-lens (J-lens) monitor. Twelve norms that flip a reported device state were tested on two devices with 96
   items each. The model followed 21 of 24 norm-device pairs; none of them was classified blind at any of the 27 lens
   layers. Clear sighted readings appeared for the 10 door pairs, while the 11 light pairs stayed unclassified until the
-  last layer. An independently fitted community lens agreed with the main lens wherever both read the fact. The
+  last layer. An independently fitted community lens gave the same reading as the main lens in 115 of 116 cases where both read the fact. The
   decision rule fixed before the run required at least three blind norms, so LAT-S2 stops in its current form. A
   correlational audit found the probe-lens gap at layer 13 consistent with input information. The release holds the
   pilot note, code, the Colab notebook, the main-run summary, log and per-pair result files, and the audit scripts,
