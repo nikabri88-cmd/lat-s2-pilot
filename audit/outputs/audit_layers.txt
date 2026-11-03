@@ -1,0 +1,9 @@
+door__after_toggle         items match True | acc R0 1.00, applied on R1 0.00 (skipped)
+door__contrarian           items match True | acc R0 1.00, applied on R1 0.96 (skipped)
+door__inverted_notation    items match True | acc R0 1.00, applied on R1 0.52 | 'applied' probe L6 0.73, L13 0.96, L20 0.96 | best single features: qline 0.94, dist1 0.61, hour 0.60
+door__logical_not          items match True | acc R0 1.00, applied on R1 0.77 | 'applied' probe L6 0.58, L13 0.75, L20 0.85 | best single features: qline 0.75, dist2 0.54, D 0.50
+door__security             items match True | acc R0 1.00, applied on R1 0.52 | 'applied' probe L6 0.71, L13 0.73, L20 0.81 | best single features: D 0.77, qline 0.73, hour 0.57
+light__code_words          items match True | acc R0 1.00, applied on R1 0.02 (skipped)
+light__inverted_notation   items match True | acc R0 1.00, applied on R1 0.69 | 'applied' probe L6 0.68, L13 0.82, L20 0.90 | best single features: qline 0.83, dist2 0.51, A 0.50
+light__logical_not         items match True | acc R0 1.00, applied on R1 0.69 | 'applied' probe L6 0.76, L13 0.84, L20 0.90 | best single features: D 0.86, qline 0.74, room_q 0.52
+light__security            items match True | acc R0 1.00, applied on R1 0.25 | 'applied' probe L6 0.61, L13 0.69, L20 0.67 | best single features: D 0.50, qline 0.50, A 0.50

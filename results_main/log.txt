@@ -1,0 +1,58 @@
+[07:07:21 UTC] LAT-S2 pilot, mode main: {"domains": ["light", "door"], "lens_max_len": 128, "seed": 2026, "follow_min": 0.8, "n_go": 3, "model": "Qwen/Qwen2.5-7B-Instruct", "n_items": 96, "n_lens_prompts": 32, "n_temp_prompts": 8, "dim_batch": 16, "batch_size": 8, "control": "community", "dtype": "auto", "min_gpu_gb": 20, "community_repo": "anicka/jlens-qwen2.5-7b-instruct", "community_file": "qwen2.5-7b-instruct_jlens.pt"}
+[07:08:10 UTC] model Qwen/Qwen2.5-7B-Instruct: 28 layers, d_model 3584, dtype torch.bfloat16; monitored layers [6, 13, 20]
+[07:08:11 UTC] preflight light/negate: accuracy norm off 1.00, norm on 1.00
+[07:08:12 UTC] preflight light/sensor_inverted: accuracy norm off 1.00, norm on 1.00
+[07:08:12 UTC] preflight light/opposite_day: accuracy norm off 1.00, norm on 1.00
+[07:08:12 UTC] preflight light/code_words: accuracy norm off 1.00, norm on 0.75  (not followed)
+[07:08:13 UTC] preflight light/toggled_since: accuracy norm off 1.00, norm on 0.00  (not followed)
+[07:08:13 UTC] preflight light/neighbour: accuracy norm off 1.00, norm on 1.00
+[07:08:13 UTC] preflight light/security: accuracy norm off 1.00, norm on 1.00
+[07:08:13 UTC] preflight light/inverted_notation: accuracy norm off 1.00, norm on 1.00
+[07:08:14 UTC] preflight light/contrarian: accuracy norm off 1.00, norm on 1.00
+[07:08:14 UTC] preflight light/logical_not: accuracy norm off 1.00, norm on 1.00
+[07:08:14 UTC] preflight light/after_toggle: accuracy norm off 1.00, norm on 1.00
+[07:08:15 UTC] preflight light/test_mode: accuracy norm off 1.00, norm on 1.00
+[07:08:15 UTC] preflight door/negate: accuracy norm off 1.00, norm on 1.00
+[07:08:15 UTC] preflight door/sensor_inverted: accuracy norm off 1.00, norm on 1.00
+[07:08:15 UTC] preflight door/opposite_day: accuracy norm off 1.00, norm on 1.00
+[07:08:16 UTC] preflight door/code_words: accuracy norm off 1.00, norm on 0.00  (not followed)
+[07:08:16 UTC] preflight door/toggled_since: accuracy norm off 1.00, norm on 0.00  (not followed)
+[07:08:16 UTC] preflight door/neighbour: accuracy norm off 1.00, norm on 1.00
+[07:08:17 UTC] preflight door/security: accuracy norm off 1.00, norm on 1.00
+[07:08:17 UTC] preflight door/inverted_notation: accuracy norm off 1.00, norm on 1.00
+[07:08:17 UTC] preflight door/contrarian: accuracy norm off 1.00, norm on 1.00
+[07:08:18 UTC] preflight door/logical_not: accuracy norm off 1.00, norm on 1.00
+[07:08:18 UTC] preflight door/after_toggle: accuracy norm off 1.00, norm on 1.00
+[07:08:18 UTC] preflight door/test_mode: accuracy norm off 1.00, norm on 1.00
+[07:08:18 UTC] preflight: 20 of 24 units follow their norm
+[07:08:19 UTC] lens corpus: Salesforce/wikitext wikitext-2-raw-v1 train, 40 paragraphs (scanned 198)
+[07:08:19 UTC] lens: fitting on 32 prompts, dim_batch 16, max_len 128
+[07:30:13 UTC] lens: fitted in 21.9 min -> lens_main.pt
+[07:30:19 UTC] control lens: anicka/jlens-qwen2.5-7b-instruct (JacobianLens(d_model=3584, n_prompts=50, source_layers=[0..26] (27 layers)))
+[07:30:23 UTC] temperatures main: monitored [2.9536522918789987, 2.5936791093020184, 1.5422108254079405] (888 tokens)
+[07:30:27 UTC] temperatures control: monitored [2.9536522918789987, 2.2775772695133827, 1.5422108254079405] (888 tokens)
+[07:31:53 UTC] unit 1/24 light/negate: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.06, 0.03, 0.82], 84 s
+[07:33:20 UTC] unit 2/24 light/sensor_inverted: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.09, 0.14, 0.52], 85 s
+[07:34:46 UTC] unit 3/24 light/opposite_day: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.64, 0.15, 0.72], 84 s
+[07:36:13 UTC] unit 4/24 light/code_words: follows True (acc 1.00/0.92), classes ['none', 'none', 'none'], rho_c [0.22, 0.18, 0.29], 84 s
+[07:37:38 UTC] unit 5/24 light/toggled_since: follows False (acc 1.00/0.00), classes ['none', 'none', 'none'], rho_c [0.87, 0.18, 0.26], 83 s
+[07:39:04 UTC] unit 6/24 light/neighbour: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.64, 0.85, 0.18], 84 s
+[07:40:29 UTC] unit 7/24 light/security: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.07, 0.03, 0.54], 82 s
+[07:41:55 UTC] unit 8/24 light/inverted_notation: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.12, 0.53, 0.0], 84 s
+[07:43:20 UTC] unit 9/24 light/contrarian: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.03, 0.26, 0.15], 82 s
+[07:44:45 UTC] unit 10/24 light/logical_not: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.03, 0.76, 0.46], 83 s
+[07:46:10 UTC] unit 11/24 light/after_toggle: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.19, 0.08, 0.55], 83 s
+[07:47:34 UTC] unit 12/24 light/test_mode: follows True (acc 1.00/1.00), classes ['none', 'none', 'none'], rho_c [0.12, 0.59, 0.67], 82 s
+[07:49:00 UTC] unit 13/24 door/negate: follows True (acc 1.00/1.00), classes ['none', 'none', 'sighted'], rho_c [0.58, 0.35, 0.18], 83 s
+[07:50:26 UTC] unit 14/24 door/sensor_inverted: follows True (acc 1.00/1.00), classes ['none', 'none', 'sighted'], rho_c [0.46, 0.5, 0.07], 84 s
+[07:51:51 UTC] unit 15/24 door/opposite_day: follows True (acc 1.00/1.00), classes ['none', 'none', 'sighted'], rho_c [0.38, 0.06, 0.48], 83 s
+[07:53:18 UTC] unit 16/24 door/code_words: follows False (acc 1.00/0.00), classes ['none', 'none', 'none'], rho_c [0.03, 0.22, 0.06], 84 s
+[07:54:45 UTC] unit 17/24 door/toggled_since: follows False (acc 1.00/0.01), classes ['none', 'none', 'none'], rho_c [0.57, 0.26, 0.1], 85 s
+[07:56:12 UTC] unit 18/24 door/neighbour: follows True (acc 1.00/1.00), classes ['none', 'none', 'sighted'], rho_c [0.33, 0.32, 0.08], 85 s
+[07:57:36 UTC] unit 19/24 door/security: follows True (acc 1.00/1.00), classes ['none', 'none', 'sighted'], rho_c [0.14, 0.11, 0.1], 82 s
+[07:59:02 UTC] unit 20/24 door/inverted_notation: follows True (acc 1.00/0.92), classes ['none', 'none', 'none'], rho_c [0.29, 0.03, 0.1], 84 s
+[08:00:28 UTC] unit 21/24 door/contrarian: follows True (acc 1.00/1.00), classes ['none', 'none', 'sighted'], rho_c [0.01, 0.2, 0.02], 84 s
+[08:01:54 UTC] unit 22/24 door/logical_not: follows True (acc 1.00/0.99), classes ['none', 'none', 'sighted'], rho_c [0.26, 0.21, 0.5], 84 s
+[08:03:20 UTC] unit 23/24 door/after_toggle: follows True (acc 1.00/1.00), classes ['none', 'none', 'sighted'], rho_c [0.07, 0.31, 0.37], 84 s
+[08:04:47 UTC] unit 24/24 door/test_mode: follows True (acc 1.00/1.00), classes ['none', 'none', 'sighted'], rho_c [0.36, 0.18, 0.11], 85 s
+[08:04:47 UTC] VERDICT: STOP | L6: 0 sighted, 0 blind; L13: 0 sighted, 0 blind; L20: 9 sighted, 0 blind; first_readable: 8 sighted, 0 blind

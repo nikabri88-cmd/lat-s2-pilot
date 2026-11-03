@@ -1,0 +1,12 @@
+layer 6: followed 21 pairs, mean probe_y 0.559, 0 with probe_y >= 0.8
+    ignored light/toggled_since: acc with norm on 0.00, probe_y 0.612
+    ignored door/code_words: acc with norm on 0.00, probe_y 0.583
+    ignored door/toggled_since: acc with norm on 0.01, probe_y 0.581
+layer 13: followed 21 pairs, mean probe_y 0.830, 11 with probe_y >= 0.8
+    ignored light/toggled_since: acc with norm on 0.00, probe_y 0.922
+    ignored door/code_words: acc with norm on 0.00, probe_y 0.909
+    ignored door/toggled_since: acc with norm on 0.01, probe_y 0.846
+layer 20: followed 21 pairs, mean probe_y 1.000, 21 with probe_y >= 0.8
+    ignored light/toggled_since: acc with norm on 0.00, probe_y 1.000
+    ignored door/code_words: acc with norm on 0.00, probe_y 1.000
+    ignored door/toggled_since: acc with norm on 0.01, probe_y 1.000

@@ -1,0 +1,6 @@
+door__inverted_notation    applied 0.52 | surface: linear 0.79, forest 0.90, fact value only 0.56 | L13 probe 0.96
+door__logical_not          applied 0.77 | surface: linear 0.85, forest 0.49, fact value only 0.50 | L13 probe 0.75
+door__security             applied 0.52 | surface: linear 0.70, forest 0.73, fact value only 0.77 | L13 probe 0.73
+light__inverted_notation   applied 0.69 | surface: linear 0.71, forest 0.70, fact value only 0.50 | L13 probe 0.82
+light__logical_not         applied 0.69 | surface: linear 0.84, forest 0.88, fact value only 0.75 | L13 probe 0.84
+light__security            applied 0.25 | surface: linear 0.58, forest 0.50, fact value only 0.50 | L13 probe 0.69

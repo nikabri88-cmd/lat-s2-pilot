@@ -1,0 +1,45 @@
+
+door__after_toggle: norm applied on 0.00 of R=1 prompts, 48 prompts where the model does not give y
+  L6: probe y 0.54 | probe actual answer 0.75 | y-probe on disagreements says y 0.52 | lens AUC for answer (R=1) 0.51
+  L13: probe y 0.74 | probe actual answer 0.82 | y-probe on disagreements says y 0.73 | lens AUC for answer (R=1) 0.59
+  L20: probe y 1.00 | probe actual answer 1.00 | y-probe on disagreements says y 1.00 | lens AUC for answer (R=1) 0.98
+
+door__contrarian: norm applied on 0.96 of R=1 prompts, 2 prompts where the model does not give y
+  L6: probe y 0.58 | probe actual answer 0.57 | lens AUC for answer (R=1) 0.51
+  L13: probe y 0.60 | probe actual answer 0.57 | lens AUC for answer (R=1) 0.42
+  L20: probe y 0.98 | probe actual answer 0.98 | lens AUC for answer (R=1) 1.00
+
+door__inverted_notation: norm applied on 0.52 of R=1 prompts, 23 prompts where the model does not give y
+  L6: probe y 0.52 | probe actual answer 0.65 | y-probe on disagreements says y 0.48 | 'applied' probe 0.73 (perm p 0.02) | lens AUC for answer (R=1) 0.55
+  L13: probe y 0.64 | probe actual answer 0.68 | y-probe on disagreements says y 0.52 | 'applied' probe 0.96 (perm p 0.02) | lens AUC for answer (R=1) 0.53
+  L20: probe y 0.99 | probe actual answer 0.96 | y-probe on disagreements says y 0.96 | 'applied' probe 0.96 (perm p 0.02) | lens AUC for answer (R=1) 0.99
+
+door__logical_not: norm applied on 0.77 of R=1 prompts, 11 prompts where the model does not give y
+  L6: probe y 0.53 | probe actual answer 0.57 | y-probe on disagreements says y 0.36 | 'applied' probe 0.58 (perm p 0.20) | lens AUC for answer (R=1) 0.62
+  L13: probe y 0.67 | probe actual answer 0.71 | y-probe on disagreements says y 0.36 | 'applied' probe 0.75 (perm p 0.02) | lens AUC for answer (R=1) 0.62
+  L20: probe y 1.00 | probe actual answer 0.97 | y-probe on disagreements says y 1.00 | 'applied' probe 0.85 (perm p 0.02) | lens AUC for answer (R=1) 0.95
+
+door__security: norm applied on 0.52 of R=1 prompts, 23 prompts where the model does not give y
+  L6: probe y 0.56 | probe actual answer 0.69 | y-probe on disagreements says y 0.48 | 'applied' probe 0.71 (perm p 0.02) | lens AUC for answer (R=1) 0.63
+  L13: probe y 0.55 | probe actual answer 0.75 | y-probe on disagreements says y 0.43 | 'applied' probe 0.73 (perm p 0.02) | lens AUC for answer (R=1) 0.60
+  L20: probe y 0.99 | probe actual answer 0.93 | y-probe on disagreements says y 0.96 | 'applied' probe 0.81 (perm p 0.02) | lens AUC for answer (R=1) 0.88
+
+light__code_words: norm applied on 0.02 of R=1 prompts, 47 prompts where the model does not give y
+  L6: probe y 0.62 | probe actual answer 0.66 | y-probe on disagreements says y 0.68 | lens AUC for answer (R=1) 0.54
+  L13: probe y 0.85 | probe actual answer 0.89 | y-probe on disagreements says y 0.89 | lens AUC for answer (R=1) 0.59
+  L20: probe y 1.00 | probe actual answer 0.99 | y-probe on disagreements says y 1.00 | lens AUC for answer (R=1) 0.99
+
+light__inverted_notation: norm applied on 0.69 of R=1 prompts, 15 prompts where the model does not give y
+  L6: probe y 0.51 | probe actual answer 0.60 | y-probe on disagreements says y 0.53 | 'applied' probe 0.68 (perm p 0.02) | lens AUC for answer (R=1) 0.71
+  L13: probe y 0.76 | probe actual answer 0.78 | y-probe on disagreements says y 0.47 | 'applied' probe 0.82 (perm p 0.02) | lens AUC for answer (R=1) 0.45
+  L20: probe y 1.00 | probe actual answer 1.00 | y-probe on disagreements says y 1.00 | 'applied' probe 0.90 (perm p 0.02) | lens AUC for answer (R=1) 0.99
+
+light__logical_not: norm applied on 0.69 of R=1 prompts, 15 prompts where the model does not give y
+  L6: probe y 0.55 | probe actual answer 0.67 | y-probe on disagreements says y 0.53 | 'applied' probe 0.76 (perm p 0.02) | lens AUC for answer (R=1) 0.33
+  L13: probe y 0.82 | probe actual answer 0.82 | y-probe on disagreements says y 0.93 | 'applied' probe 0.84 (perm p 0.02) | lens AUC for answer (R=1) 0.31
+  L20: probe y 1.00 | probe actual answer 0.98 | y-probe on disagreements says y 1.00 | 'applied' probe 0.90 (perm p 0.02) | lens AUC for answer (R=1) 0.95
+
+light__security: norm applied on 0.25 of R=1 prompts, 36 prompts where the model does not give y
+  L6: probe y 0.54 | probe actual answer 0.69 | y-probe on disagreements says y 0.58 | 'applied' probe 0.61 (perm p 0.07) | lens AUC for answer (R=1) 0.46
+  L13: probe y 0.58 | probe actual answer 0.69 | y-probe on disagreements says y 0.56 | 'applied' probe 0.69 (perm p 0.02) | lens AUC for answer (R=1) 0.52
+  L20: probe y 0.99 | probe actual answer 0.93 | y-probe on disagreements says y 0.97 | 'applied' probe 0.67 (perm p 0.02) | lens AUC for answer (R=1) 0.83
