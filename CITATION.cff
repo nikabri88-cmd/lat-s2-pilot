@@ -3,6 +3,7 @@ message: "If you use this material, please cite it as below."
 title: "LAT-S2 pilot: Jacobian-lens monitor and text-stated norms in Qwen2.5-7B-Instruct"
 type: software
 version: "1.0.1"
+doi: "10.5281/zenodo.23913333"
 date-released: "2026-11-03"
 identifiers:
   - type: doi

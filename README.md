@@ -2,7 +2,7 @@
 
 Julia Ryzhkova, Siriona · ORCID 0009-0005-4194-6059 · 3 November 2026 (v1.0.1)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23912045.svg)](https://doi.org/10.5281/zenodo.23912045)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23913333.svg)](https://doi.org/10.5281/zenodo.23913333)
 
 In Qwen2.5-7B-Instruct, a Jacobian-lens (J-lens) monitor showed no blind norm. Among the 21 of 24 norm–device pairs the model follows, none was classified blind at any of the 27 lens layers, so LAT-S2 stops in its current form. Before the last lens layer, sighted classes appeared only for the door pairs (8 of 10 at layer 19, 7 at layer 21, all 10 from layer 22); the light pairs stayed unclassified until the last layer. Linear probes decode the norm-applied answer at layer 13 where the lens is silent; a correlational audit finds this gap consistent with input information.
 
@@ -43,8 +43,8 @@ CC BY-NC 4.0, see [LICENSE](LICENSE).
 
 ## Cite
 
-Ryzhkova, J. (2026). LAT-S2 pilot: Jacobian-lens monitor and text-stated norms in Qwen2.5-7B-Instruct (v1.0.1). Zenodo.
+Ryzhkova, J. (2026). LAT-S2 pilot: Jacobian-lens monitor and text-stated norms in Qwen2.5-7B-Instruct (v1.0.1). Zenodo. https://doi.org/10.5281/zenodo.23913333
 
-Version 1.0.0: https://doi.org/10.5281/zenodo.23912045. The DOI of version 1.0.1 is added after its release.
+Version 1.0.0, superseded by v1.0.1: https://doi.org/10.5281/zenodo.23912045
 
 See also [CITATION.cff](CITATION.cff).
